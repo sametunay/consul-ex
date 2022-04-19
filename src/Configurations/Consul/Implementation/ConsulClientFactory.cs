@@ -12,6 +12,11 @@ public class ConsulClientFactory : IConsulClientFactory
         _source = source;
     }
 
+    public ConsulClientFactory()
+    {
+        _source = new ConsulSource();
+    }
+
     public IConsulClient Create()
     {
         return new ConsulClient(cfg =>
@@ -20,4 +25,5 @@ public class ConsulClientFactory : IConsulClientFactory
             cfg.WaitTime = _source.WaitTime;
         });
     }
+
 }

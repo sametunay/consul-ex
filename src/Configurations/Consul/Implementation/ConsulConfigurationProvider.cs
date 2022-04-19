@@ -54,9 +54,9 @@ public class ConsulConfigurationProvider : ConfigurationProvider, IDisposable
         SetData(kvPairs);
     }
 
-    private async Task<KVPair[]> GetKvPairs(CancellationToken cancellationToken)
+    private async Task<KVPair> GetKvPairs(CancellationToken cancellationToken)
     {
-        return (await _client.KV.List(_source.Key, cancellationToken)).Response;
+        return (await _client.KV.Get(_source.Key, cancellationToken)).Response;
     }
 
     private async Task PoolingLoop(CancellationToken cancellationToken)
@@ -71,7 +71,7 @@ public class ConsulConfigurationProvider : ConfigurationProvider, IDisposable
         }
     }
 
-    private void SetData(KVPair[] kVPairs)
+    private void SetData(KVPair kVPairs)
     {
         Data = kVPairs.ToDictionary();
     }

@@ -16,14 +16,16 @@ public class BaseController : ControllerBase
 
 
     [HttpGet]
-    public IActionResult HealthCheck()
+    [ApiExplorerSettings(IgnoreApi = true)]
+    public IActionResult Info()
     {
-        var email = _config.GetSection("email").Get<string>();
+        var app = _config.GetSection("app").Get<string>();
+        var version = _config.GetSection("version").Get<string>();
 
         return Ok(new
         {
-            apiInfo = "consul-test-api",
-            value = email
+            app,
+            version
         });
     }
 }

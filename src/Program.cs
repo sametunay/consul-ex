@@ -1,3 +1,4 @@
+using System;
 using ConsulExample;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,8 +13,11 @@ builder.Configuration.AddConsul(env, opt =>
 {
     opt.Address = consulHost;
     opt.AutoLoad = true;
+    opt.WaitTime = TimeSpan.FromSeconds(1);
 });
 
+builder.Services.AddConsulClient(consulHost);
+builder.Services.AddConsulService();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

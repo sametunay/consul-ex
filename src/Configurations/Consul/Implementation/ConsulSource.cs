@@ -15,6 +15,10 @@ internal class ConsulSource : IConsulSource
         Key = key;
     }
 
+    public ConsulSource()
+    {   
+    }
+
     public IConfigurationProvider Build(IConfigurationBuilder builder)
     {
         var client = new ConsulClientFactory(this).Create();
