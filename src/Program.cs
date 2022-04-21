@@ -13,7 +13,7 @@ builder.Configuration.AddConsul(env, opt =>
 {
     opt.Address = consulHost;
     opt.AutoLoad = true;
-    opt.WaitTime = TimeSpan.FromSeconds(1);
+    opt.WaitTime = TimeSpan.FromMinutes(2);
 });
 
 builder.Services.AddConsulClient(consulHost);

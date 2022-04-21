@@ -22,7 +22,6 @@ public class ConsulClientFactory : IConsulClientFactory
         return new ConsulClient(cfg =>
         {
             cfg.Address = new Uri(_source.Address);
-            cfg.WaitTime = _source.WaitTime;
         });
     }
 
